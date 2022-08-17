@@ -9,6 +9,7 @@ Please add instructions on how to run it and publish it in this Github as a PR.
 
 ## Conditions 
 
+
 The prices are integers for example, 100.00€ would be 10000.
   
 1. [x] You can store the products as you see fit (json file, in memory, rdbms of choice)
