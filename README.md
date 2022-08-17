@@ -24,7 +24,7 @@ The prices are integers for example, 100.00€ would be 10000.
 10. [x] When a product has a discount, price.original is the original price, price.final is the amount with the discount applied and discount_percentage represents the applied discount with the % sign.
 
 Example product with a discount of 30% applied:  
-    `{
+`    {
       "sku": "000001",
       "name": "Full coverage insurance",
       "category": "insurance",
@@ -53,7 +53,7 @@ Example product with a discount of 30% applied:
 ## Dataset.       
 The following dataset is the only dataset you need to be able to serve on the API: 
 
-  `{
+`{
     "products": [
       {
         "sku": "000001",
