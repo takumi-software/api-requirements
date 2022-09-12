@@ -3,9 +3,13 @@
 ## Description
 We want you to implement a REST API endpoint that given a list of products, applies some
 discounts to them and can be filtered.
-You are free to choose whatever language and tools you are most comfortable with but we value you to use laravel since our main platform is also on laravel / php.
+You are free to choose whatever language and tools you are most comfortable with, but, we value you to use laravel since our main platform is also on laravel / php.
 We will value your ability to apply the following rules on the corresponding layers following Domain Driven Design. 
-Please add instructions on how to run it and publish it in this Github as a PR.
+Please add instructions on how to run it and publish it on your fork.
+
+## Deliverable 
+
+Fork the project, work on the solution and send us back a link to your forked GitHub project to examine your answer to this test.
 
 ## Conditions 
 
