@@ -1,0 +1,97 @@
+version: '3.8'
+
+networks:
+  hq:
+
+services:
+  nginx:
+    image: nginx:1.22-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./api-requirements:/var/www/html
+      - ./.nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - api
+      - mysql
+    networks:
+      - hq
+
+  api:
+    build:
+      context: .
+      args:
+        - PHP_MODE=fpm
+    volumes:
+      - ./api-requirements:/var/www/html:delegated
+    working_dir: /var/www/html
+    ports:
+      - 9000:9000
+    networks:
+      - hq
+
+  composer:
+    image: composer
+    volumes:
+      - ./api-requirements:/var/www/html:delegated
+    working_dir: /var/www/html
+    entrypoint: ['composer', '--ignore-platform-reqs']
+    networks:
+      - hq
+
+  artisan:
+    build:
+      context: .
+    volumes:
+      - ./api-requirements:/var/www/html:delegated
+    working_dir: /var/www/html
+    depends_on:
+      - mysql
+    entrypoint: ['php', '/var/www/html/artisan']
+    networks:
+      - hq
+
+  pest:
+    build:
+      context: .
+    volumes:
+      - ./api-requirements:/var/www/html:delegated
+    working_dir: /var/www/html
+    depends_on:
+      - mysql
+    entrypoint: ['php', '/var/www/html/vendor/bin/pest']
+    networks:
+      - hq
+
+  mysql:
+    image: mysql:8
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: hq
+      MYSQL_USERNAME: devuser
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - hq
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: devuser
+      PMA_PASSWORD: secret
+      PMA_ROOT_PASSWORD: secret
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql
+
+# volumes.
+volumes:
+  # data volumes.
+  mysql-data: # MySQL persistent storage.
