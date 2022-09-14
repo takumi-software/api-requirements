@@ -33,13 +33,11 @@ sudo chmod -R 775 ./api-requirements/storage
 - [laracasts/presenter](https://github.com/laracasts/presenter)
 - [spatie/laravel-enum](https://github.com/spatie/laravel-enum)
 - [spatie/laravel-query-builder](https://github.com/spatie/laravel-query-builder)
-- [timacdonald/json-api](https://github.com/timacdonald/json-api)
-- [pestphp][https://pestphp.com/]
+- [pestphp](https://pestphp.com/)
 #### Endpoints
 - `GET http://localhost/products`
 - `GET http://localhost/products?filter[category]=insurance`
 - `GET http://localhost/products?filter[price]=89000`
-- `GET http://localhost/products?filter[price]=50000..89000`
 - `GET http://localhost/products?filter[category]=vehicle&filter[price]=89000`
 #### Testing api
 ```bash
